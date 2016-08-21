@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "users": {
+    "dataSource": "dbase",
+    "public": true
+  },
+  "employees": {
+    "dataSource": "dbase",
+    "public": true
+  },
+  "organizations": {
+    "dataSource": "dbase",
+    "public": true
+  },
+  "police_station": {
+    "dataSource": "dbase",
+    "public": true
+  }
+}
