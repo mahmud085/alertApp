@@ -8,7 +8,13 @@
   },
   "properties": {},
   "validations": [],
-  "relations": {},
+  "relations": {
+    "employees":{
+      "type":"belongsTo",
+      "model":"employees",
+      "foreignKey":"employeeId"
+    }
+    },
   "acls": [],
   "methods": {}
 }

@@ -25,7 +25,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "organizations":{
+      "type":"belongsTo",
+      "model":"organizations",
+      "foreignKey":"organizationId"
+    }
+    },
   "acls": [],
   "methods": {}
 }
