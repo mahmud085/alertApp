@@ -11,12 +11,12 @@
       "type": "string",
       "required": true
     },
-    "address": {
+    "location": {
       "type": "string",
       "required": true
     },
-    "location": {
-      "type": "geopoint",
+    "address": {
+      "type": "string",
       "required": true
     }
   },
