@@ -16,7 +16,7 @@
       "required": true
     },
     "location": {
-      "type": "geopoint",
+      "type": "string",
       "required": true
     }
   },
