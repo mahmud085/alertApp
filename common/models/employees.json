@@ -7,7 +7,7 @@
     "validateUpsert": true
   },
   "properties": {
-    "first": {
+    "firstName": {
       "type": "string",
       "required": true
     },
@@ -16,10 +16,6 @@
       "required": true
     },
     "email": {
-      "type": "string",
-      "required": true
-    },
-    "phone": {
       "type": "string",
       "required": true
     }

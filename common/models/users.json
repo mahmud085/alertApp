@@ -6,7 +6,16 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "secu_num": {
+      "type": "string",
+      "required": true
+    },
+    "isFirstTime": {
+      "type": "boolean",
+      "required": true
+    }
+  },
   "validations": [],
   "relations": {
     "employees":{
