@@ -29,4 +29,9 @@
     "dataSource": "dbase",
     "public": true
   }
+  ,
+  "Email": {
+        "dataSource": "sendgrid",
+        "public": false
+  }
 }

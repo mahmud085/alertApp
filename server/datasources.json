@@ -8,5 +8,11 @@
     "name": "dbase",
     "user": "",
     "connector": "mongodb"
+  },
+  "sendgrid": {
+    "name": "sendgrid",
+    "connector": "loopback-connector-sendgrid",
+    "api_user": "newalert",
+    "api_key": "Alert321App"
   }
 }
