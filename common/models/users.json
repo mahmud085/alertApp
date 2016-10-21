@@ -14,6 +14,10 @@
     "isFirstTime": {
       "type": "boolean",
       "required": true
+    },
+    "type":{
+      "type":"string",
+      "required" : true
     }
   },
   "validations": [],
@@ -24,6 +28,31 @@
       "foreignKey":"employeeId"
     }
     },
-  "acls": [],
+  "acls": [
+        {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+     {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {}
 }

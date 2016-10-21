@@ -8,14 +8,16 @@ Employees.newEntry = function(data,cb){
 	var username = data.req.body.firstName + data.req.body.lastName;
 	var email = data.req.body.email;
 	var password = username;
-	var secu_num = 123;
+	var secu_num = 00;
 	var isFirstTime = true;
+	var type = data.req.body.type;
 	Employees.app.models.users.create({
 		username : username,
 		email : email,
 		password : password,
 		secu_num : secu_num,
-		isFirstTime : isFirstTime
+		isFirstTime : isFirstTime,
+		type : type
 	},function(err,res){
 		if(err) { 
 			console.log("Error creating users!");

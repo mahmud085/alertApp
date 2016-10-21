@@ -1,5 +1,5 @@
 {
-  "_meta": {
+   "_meta": {
     "sources": [
       "loopback/common/models",
       "loopback/server/models",
@@ -12,6 +12,26 @@
       "../common/mixins",
       "./mixins"
     ]
+  },
+  "User": {
+    "dataSource": "dbase",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "dbase",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "dbase",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "dbase",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "dbase",
+    "public": false
   },
   "users": {
     "dataSource": "dbase",
@@ -31,7 +51,7 @@
   }
   ,
   "Email": {
-        "dataSource": "sendgrid",
-        "public": false
+    "dataSource": "sendgrid",
+    "public": false
   }
 }
