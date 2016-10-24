@@ -11,35 +11,39 @@ Employees.newEntry = function(data,cb){
 	var secu_num = 00;
 	var isFirstTime = true;
 	var type = data.req.body.type;
-	Employees.app.models.users.create({
-		username : username,
-		email : email,
-		password : password,
-		secu_num : secu_num,
-		isFirstTime : isFirstTime,
-		type : type
-	},function(err,res){
-		if(err) { 
-			console.log("Error creating users!");
-			cb(null,"Error creating user! Username or email is already taken!");
-		}else {
-			console.log("user created = ",res);
-			//cb(null,"Successfully");
-		}
-	});
+	var organizationId = data.req.body.organizationId;
 
 	Employees.create({
 		firstName : data.req.body.firstName,
 		lastName : data.req.body.lastName,
-		email : data.req.body.email
+		email : data.req.body.email,
+		organizationId : data.req.body.organizationId
 	},function(err,res){
-		if(err) console.log(err);
+		if(err) {
+			console.log(err);
+			cb(null,"Error creating employees");
+		}
 		else {
-			console.log("Employees Created Successfully!");
+			console.log("Employees Created Successfully!",res);
+			Employees.app.models.users.create({
+				username : username,
+				email : email,
+				password : password,
+				secu_num : secu_num,
+				isFirstTime : isFirstTime,
+				type : type,
+				employeeId : res.id
+			},function(err,res){
+				if(err) { 
+					console.log("Error creating users! ",err);
+					cb(null,"Error creating user! Username or email is already taken!");
+				}else {
+					console.log("user created = ",res);
+					//cb(null,"Successfully");
+				}
+			});
 		}
 	});
-
-
 
 	var html ="Hello "+data.req.body.firstName+"<br><br>Welcome to our alert app!<br><br>Your username and password are given below <br><br>"+
 	"Username : "+username + "<br>Password : "+password+"<br><br>Please Change your username and password from the app.<br><br>Thank You!" 
