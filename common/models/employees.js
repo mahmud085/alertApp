@@ -3,21 +3,51 @@ var app = loopback();
 
 module.exports = function(Employees) {
 Employees.newEntry = function(data,cb){
-	console.log("Data = ",data.req.body);
+	//console.log("Data = ",data.req.body);
 
-	var username = data.req.body.firstName + data.req.body.lastName;
-	var email = data.req.body.email;
-	var password = username;
-	var secu_num = 00;
-	var isFirstTime = true;
-	var type = data.req.body.type;
-	var organizationId = data.req.body.organizationId;
+	var data2 = {};
+	data2.firstName = data.req.body.firstName;
+	data2.lastName = data.req.body.lastName;
+	data2.email = data.req.body.email;
+	data2.username = data.req.body.firstName + data.req.body.lastName;
+	data2.password = data2.username;
+	data2.secu_num = 00;
+	data2.isFirstTime = true;
+	data2.type = data.req.body.type ;
+	data2.organizationId = data.req.body.organizationId;
+	Employees.app.models.users.find({
+		where : {
+			or : [
+				{"username" : data2.username},
+				{"email" : data2.email}
+			]
+		}
+	},function(error,user){
+		if(!user[0]){
+			createUser(data2,cb);
+		}
+		else if(user[0].username === data2.username)
+		{
+			var error = new Error("Username Exists!");
+			error.status = 400;
+			return cb(error);
+		}
+		else if(user[0].email === data2.email)
+		{
+			var error = new Error("Email Exists!");
+			error.status = 400;
+			return cb(error);
+		}
+		
+	});
 
+};
+var createUser = function(data2,cb){
 	Employees.create({
-		firstName : data.req.body.firstName,
-		lastName : data.req.body.lastName,
-		email : data.req.body.email,
-		organizationId : data.req.body.organizationId
+		firstName : data2.firstName,
+		lastName : data2.lastName,
+		email : data2.email,
+		organizationId : data2.organizationId
 	},function(err,res){
 		if(err) {
 			console.log(err);
@@ -26,12 +56,12 @@ Employees.newEntry = function(data,cb){
 		else {
 			console.log("Employees Created Successfully!",res);
 			Employees.app.models.users.create({
-				username : username,
-				email : email,
-				password : password,
-				secu_num : secu_num,
-				isFirstTime : isFirstTime,
-				type : type,
+				username : data2.username,
+				email : data2.email,
+				password : data2.password,
+				secu_num : data2.secu_num,
+				isFirstTime : data2.isFirstTime,
+				type : data2.type,
 				employeeId : res.id
 			},function(err,res){
 				if(err) { 
@@ -45,11 +75,11 @@ Employees.newEntry = function(data,cb){
 		}
 	});
 
-	var html ="Hello "+data.req.body.firstName+"<br><br>Welcome to our alert app!<br><br>Your username and password are given below <br><br>"+
-	"Username : "+username + "<br>Password : "+password+"<br><br>Please Change your username and password from the app.<br><br>Thank You!" 
+	var html ="Hello "+data2.firstName+"<br><br>Welcome to our alert app!<br><br>Your username and password are given below <br><br>"+
+	"Username : "+data2.username + "<br>Password : "+data2.password+"<br><br>Please Change your username and password from the app.<br><br>Thank You!" 
 	"<br>Password" ; 
 	loopback.Email.send({
-	    to: email,
+	    to: data2.email,
 	    from: {email :'alertapp12@gmail.com',name : "Police Alert"},
 	    subject: "Welcome to our apps",
 	    text: "text message",
@@ -60,12 +90,10 @@ Employees.newEntry = function(data,cb){
 	        console.log('Upppss something crash', err);
 	        cb(null,"Email sending failed!");
 	    }
-	    console.log("Successfully sent email to "+email);
+	    console.log("Successfully sent email to "+data2.email);
+	   	 cb(null,"Successfully Created");
 	});
-
-cb(null,"Successfully Created");
-
-};
+}
 Employees.send_email = function(data,cb){
 	var html = data.req.body.content ;
 	var email = data.req.body.email; 
