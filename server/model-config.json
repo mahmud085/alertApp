@@ -1,5 +1,5 @@
 {
-   "_meta": {
+  "_meta": {
     "sources": [
       "loopback/common/models",
       "loopback/server/models",
@@ -14,44 +14,47 @@
     ]
   },
   "User": {
-    "dataSource": "dbase",
+    "dataSource": "db",
     "public": false
   },
   "AccessToken": {
-    "dataSource": "dbase",
+    "dataSource": "db",
     "public": false
   },
   "ACL": {
-    "dataSource": "dbase",
+    "dataSource": "db",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "dbase",
+    "dataSource": "db",
     "public": false
   },
   "Role": {
-    "dataSource": "dbase",
+    "dataSource": "db",
     "public": false
   },
   "users": {
-    "dataSource": "dbase",
+    "dataSource": "db",
     "public": true
   },
   "employees": {
-    "dataSource": "dbase",
+    "dataSource": "db",
     "public": true
   },
   "organizations": {
-    "dataSource": "dbase",
+    "dataSource": "db",
     "public": true
   },
   "police_station": {
-    "dataSource": "dbase",
+    "dataSource": "db",
     "public": true
-  }
-  ,
+  },
   "Email": {
     "dataSource": "sendgrid",
     "public": false
+  },
+  "common_email_recipients": {
+    "dataSource": "db",
+    "public": true
   }
 }

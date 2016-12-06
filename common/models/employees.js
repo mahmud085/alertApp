@@ -3,7 +3,7 @@ var app = loopback();
 
 module.exports = function(Employees) {
 Employees.newEntry = function(data,cb){
-	//console.log("Data = ",data.req.body);
+	console.log("Data = ",data.req.body);
 
 	var data2 = {};
 	data2.firstName = data.req.body.firstName;
@@ -95,6 +95,7 @@ var createUser = function(data2,cb){
 	});
 }
 Employees.send_email = function(data,cb){
+	console.log("DAta ",data.req.body);
 	var html = data.req.body.content ;
 	var email = data.req.body.email; 
 	loopback.Email.send({
@@ -113,8 +114,41 @@ Employees.send_email = function(data,cb){
 	    cb(null,"Email sent Successfully");
 	});
 };
+Employees.deleteEntry = function(data,cb){
+	console.log("DAta ",data.req.body);
+	var employeeId = data.req.body.employeeId;
+	Employees.remove({ id: employeeId}, function (err, removed) {
+        if (err)
+            cb(err)
+        else
+            console.log("removed employee",removed);
+    }); 
+   	Employees.app.models.users.remove({ employeeId: employeeId}, function (err, removed) {
+        if (err)
+            cb(err)
+        else
+            console.log("removed user",removed);
+    });
+    cb(null,"all deleteEntry successfull");
+};
 Employees.remoteMethod(
 	'newEntry',{
+		accepts : {
+			arg: 'data',
+			type: 'object', 
+			http: { source: 'context' } 
+		},
+		returns : {
+			arg : 'message',
+			type : 'string',
+			root : true
+		},
+		http : { verb : 'post'}
+	}
+
+);
+Employees.remoteMethod(
+	'deleteEntry',{
 		accepts : {
 			arg: 'data',
 			type: 'object', 

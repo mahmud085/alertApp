@@ -1,33 +1,20 @@
 {
-  "name": "employees",
-  "plural": "",
+  "name": "common_email_recipients",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "firstName": {
-      "type": "string",
-      "required": true
-    },
-    "lastName": {
-      "type": "string",
-      "required": true
+    "name": {
+      "type": "string"
     },
     "email": {
-      "type": "string",
-      "required": true
+      "type": "string"
     }
   },
   "validations": [],
-  "relations": {
-    "organizations": {
-      "type": "belongsTo",
-      "model": "organizations",
-      "foreignKey": "organizationId"
-    }
-  },
+  "relations": {},
   "acls": [
     {
       "accessType": "*",
@@ -52,20 +39,6 @@
       "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW",
-      "property": "newEntry"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW",
-      "property": "send_email"
     }
   ],
   "methods": {}

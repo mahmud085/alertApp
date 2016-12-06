@@ -1,6 +1,8 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-
+var fs = require('fs');
+var path = require('path');
+var bodyParser = require('body-parser');
 var app = module.exports = loopback();
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -8,6 +10,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+app.middleware('initial', bodyParser.urlencoded({ extended: true }));
 
 app.start = function() {
   // start the web server

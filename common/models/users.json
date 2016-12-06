@@ -15,21 +15,21 @@
       "type": "boolean",
       "required": true
     },
-    "type":{
-      "type":"string",
-      "required" : true
+    "type": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
   "relations": {
-    "employees":{
-      "type":"belongsTo",
-      "model":"employees",
-      "foreignKey":"employeeId"
+    "employees": {
+      "type": "belongsTo",
+      "model": "employees",
+      "foreignKey": "employeeId"
     }
-    },
+  },
   "acls": [
-        {
+    {
       "accessType": "*",
       "principalType": "ROLE",
       "principalId": "$unauthenticated",
@@ -41,7 +41,7 @@
       "principalId": "$authenticated",
       "permission": "ALLOW"
     },
-     {
+    {
       "accessType": "WRITE",
       "principalType": "ROLE",
       "principalId": "$unauthenticated",
@@ -49,6 +49,12 @@
     },
     {
       "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
       "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW"

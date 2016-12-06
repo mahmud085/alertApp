@@ -22,12 +22,12 @@
   },
   "validations": [],
   "relations": {
-    "police_stations":{
-      "type":"belongsTo",
-      "model":"police_station",
-      "foreignKey":"police_stationId"
+    "police_stations": {
+      "type": "belongsTo",
+      "model": "police_station",
+      "foreignKey": "police_stationId"
     }
-    },
+  },
   "acls": [
     {
       "accessType": "*",
@@ -41,7 +41,7 @@
       "principalId": "$authenticated",
       "permission": "ALLOW"
     },
-     {
+    {
       "accessType": "WRITE",
       "principalType": "ROLE",
       "principalId": "$unauthenticated",
