@@ -75,9 +75,14 @@ var createUser = function(data2,cb){
 		}
 	});
 
-	var html ="Hello "+data2.firstName+"<br><br>Welcome to our alert app!<br><br>Your username and password are given below <br><br>"+
-	"Username : "+data2.username + "<br>Password : "+data2.password+"<br><br>Please Change your username and password from the app.<br><br>Thank You!" 
-	"<br>Password" ; 
+	var html =
+	"Hello "+data2.firstName+",<br><br>Welcome to our alert app!<br><br>"+
+	"Your username and password are given below <br><br>"+
+	"Username : "+data2.username + 
+	"<br>Password : "+data2.password+
+	"<br><br>And please also note that your default security number is 0"
+	"<br>Please Change your security number after you login to the app.<br><br>Thank You!"; 
+	
 	loopback.Email.send({
 	    to: data2.email,
 	    from: {email :'alertapp12@gmail.com',name : "Police Alert"},
