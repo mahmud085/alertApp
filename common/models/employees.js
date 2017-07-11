@@ -1,3 +1,4 @@
+import fcm from '../../server/fcm.config';
 var loopback = require('loopback');
 var app = loopback();
 
@@ -136,6 +137,11 @@ Employees.deleteEntry = function(data,cb){
     });
     cb(null,"all deleteEntry successfull");
 };
+Employees.send_notifcation = function(data, cb) {
+	console.log('data: ', data.req.body);
+	var deviceId = data.req.body.deviceId;
+	fcm.send_fcm(deviceId);
+}
 Employees.remoteMethod(
 	'newEntry',{
 		accepts : {
