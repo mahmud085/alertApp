@@ -1,4 +1,4 @@
-import fcm from '../../server/fcm.config';
+const fcm = require('../../server/fcm.config');
 var loopback = require('loopback');
 var app = loopback();
 
@@ -190,5 +190,21 @@ Employees.remoteMethod(
 	}
 
 );
+
+Employees.remoteMethod(
+	'send_notification', {
+		accepts : {
+			arg: 'data',
+			type: 'object', 
+			http: { source: 'context' } 
+		},
+		returns : {
+			arg : 'message',
+			type : 'string',
+			root : true
+		},
+		http : { verb : 'post'}
+	}
+)
 
 };

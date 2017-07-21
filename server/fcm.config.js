@@ -1,5 +1,5 @@
 var FCM = require('fcm-node');
-var serverKey = 'AAAAK_If0-E:APA91bESsxMnIYy584T43sm6-o019e6g1tAKnY-CEBNq7eD_FO50MimS3HfEmQswTne6C65a1O928eoAqH34p_J50ck1C2AJGqQ1FNeV5qxLsDALKV6tXS82SDmjfMhf-Pdbf-Wx9N2T'; //put your server key here 
+var serverKey = 'AAAATZFYR7c:APA91bEAhNvg-gCk7cwpC9hilaWgGX33MHpbC8hpu1HM_v_5gc11jFFRSYsneOAGk2hPYQRdg0rGi733myVgPopqVS7O-2R_-6taF_gVWSrS2QBlB-KOiO6hw7VJ04aeXVQdzKVNr1ij'
 var fcm = new FCM(serverKey);
  
 var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera) 
