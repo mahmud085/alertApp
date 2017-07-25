@@ -1,4 +1,4 @@
-var FCM = require('fcm-node');
+var FCM = require('fcm-push');
 var serverKey = 'AAAATZFYR7c:APA91bEAhNvg-gCk7cwpC9hilaWgGX33MHpbC8hpu1HM_v_5gc11jFFRSYsneOAGk2hPYQRdg0rGi733myVgPopqVS7O-2R_-6taF_gVWSrS2QBlB-KOiO6hw7VJ04aeXVQdzKVNr1ij'
 var fcm = new FCM(serverKey);
  
@@ -16,15 +16,13 @@ var message = { //this may vary according to the message type (single recipient,
     }
 };
 
-var send_fcm = function(data) {
+module.exports = function(data) {
     message.to = data;    
     fcm.send(message, function(err, response){
         if (err) {
-            console.log("Something has gone wrong!");
+            console.log("Something has gone wrong!",err);
         } else {
             console.log("Successfully sent with response: ", response);
         }
     });
 }
-
-module.exports = send_fcm;

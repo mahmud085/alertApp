@@ -100,6 +100,7 @@ var createUser = function(data2,cb){
 	   	 cb(null,"Successfully Created");
 	});
 }
+
 Employees.send_email = function(data,cb){
 	console.log("DAta ",data.req.body);
 	var html = data.req.body.content ;
@@ -120,6 +121,7 @@ Employees.send_email = function(data,cb){
 	    cb(null,"Email sent Successfully");
 	});
 };
+
 Employees.deleteEntry = function(data,cb){
 	console.log("DAta ",data.req.body);
 	var employeeId = data.req.body.employeeId;
@@ -137,11 +139,14 @@ Employees.deleteEntry = function(data,cb){
     });
     cb(null,"all deleteEntry successfull");
 };
-Employees.send_notifcation = function(data, cb) {
+
+Employees.send_notification = function(data, cb) {
 	console.log('data: ', data.req.body);
 	var deviceId = data.req.body.deviceId;
-	fcm.send_fcm(deviceId);
+	fcm(deviceId);
+	cb(null,"notification sent")
 }
+
 Employees.remoteMethod(
 	'newEntry',{
 		accepts : {

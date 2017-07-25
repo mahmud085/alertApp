@@ -66,6 +66,13 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "send_email"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "send_notification"
     }
   ],
   "methods": {}
