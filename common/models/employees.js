@@ -1,4 +1,5 @@
-const fcm = require('../../server/fcm.config');
+var fcm = require('../../server/fcm.config');
+var apn = require('../../server/apn.config');
 var loopback = require('loopback');
 var app = loopback();
 
@@ -141,10 +142,12 @@ Employees.deleteEntry = function(data,cb){
 };
 
 Employees.send_notification = function(data, cb) {
-	console.log('data: ', data.req.body);
+	console.log('before fcm data: ', data.req.body);
 	var deviceId = data.req.body.deviceId;
-	fcm(deviceId);
-	cb(null,"notification sent")
+	var deviceType = data.req.body.deviceType;
+	if (deviceType === "ANDROID") fcm(deviceId);
+	else if (deviceType === "IOS") apn(deviceId);
+	cb(null, "notification sent")
 }
 
 Employees.remoteMethod(

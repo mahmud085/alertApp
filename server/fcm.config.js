@@ -10,13 +10,14 @@ var message = { //this may vary according to the message type (single recipient,
         body: 'Body of your push notification' 
     },
         
-    data: {  //you can send only notification or only data(or include both) 
-        my_key: 'my value',
-        my_another_key: 'my another value'
-    }
+    // data: {  //you can send only notification or only data(or include both) 
+    //     my_key: 'my value',
+    //     my_another_key: 'my another value'
+    // }
 };
 
 module.exports = function(data) {
+    console.log("fcm data: "+ data);
     message.to = data;    
     fcm.send(message, function(err, response){
         if (err) {
