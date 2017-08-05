@@ -1,7 +1,9 @@
 var fcm = require('../../server/fcm.config');
-var apn = require('../../server/apn.config');
+// var apn = require('../../server/apn.config');
 var loopback = require('loopback');
 var app = loopback();
+var apn = require('apn');
+var fs = require('fs');
 
 module.exports = function(Employees) {
 Employees.newEntry = function(data,cb){
@@ -143,11 +145,32 @@ Employees.deleteEntry = function(data,cb){
 
 Employees.send_notification = function(data, cb) {
 	console.log('before fcm data: ', data.req.body);
-	var deviceId = data.req.body.deviceId;
-	var deviceType = data.req.body.deviceType;
-	if (deviceType === "ANDROID") fcm(deviceId);
-	else if (deviceType === "IOS") apn(deviceId);
-	cb(null, "notification sent")
+	// var deviceId = data.req.body.deviceId;
+	// var deviceType = data.req.body.deviceType;
+	// if (deviceType === "ANDROID") fcm(deviceId);
+	// else if (deviceType === "IOS") apn(deviceId);
+	var tokens = ["9f6970f2152cd385789261f4904f2aa437b132edbebb00edb56d9404adb861af"];
+
+	var service = new apn.Provider({
+		key: fs.readFileSync('certificates/key.pem', 'utf8'),
+		cert: fs.readFileSync('certificates/cert.pem', 'utf8'),
+		passphrase: '1234'
+	});
+
+	var note = new apn.Notification({
+		alert:  "Breaking News: I just sent my first Push Notification",
+		sound:  "alarm.mp3"
+	});
+
+	note.topic = "com.ionicframework.oneclick823051";
+
+	service.send(note, tokens).then( result => {
+        console.log("sent:", result.sent.length);
+        console.log("failed:", result.failed.length);
+        console.log(result.failed);
+	});
+	
+	service.shutdown();
 }
 
 Employees.remoteMethod(
