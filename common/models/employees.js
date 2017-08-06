@@ -145,32 +145,33 @@ Employees.deleteEntry = function(data,cb){
 
 Employees.send_notification = function(data, cb) {
 	console.log('before fcm data: ', data.req.body);
+	return fcm("eq3sJBV6HxM:APA91bFrVS0v7Ilm4OEdrgrKu3GtUIxCfWBMlfbNdfZUiwwxQqQUe9zsXpQs95_2UxklEaK51SNUm57n-FAMs4MtLdZ60VVHGVCEtvbx53gQ2kxGlIXHQP96M1PcQ6V4SKLvD-P8HzLW");
 	// var deviceId = data.req.body.deviceId;
 	// var deviceType = data.req.body.deviceType;
 	// if (deviceType === "ANDROID") fcm(deviceId);
 	// else if (deviceType === "IOS") apn(deviceId);
-	var tokens = ["9f6970f2152cd385789261f4904f2aa437b132edbebb00edb56d9404adb861af"];
+	// var tokens = ["9f6970f2152cd385789261f4904f2aa437b132edbebb00edb56d9404adb861af"];
 
-	var service = new apn.Provider({
-		key: fs.readFileSync('certificates/key.pem', 'utf8'),
-		cert: fs.readFileSync('certificates/cert.pem', 'utf8'),
-		passphrase: '1234'
-	});
+	// var service = new apn.Provider({
+	// 	key: fs.readFileSync('certificates/key.pem', 'utf8'),
+	// 	cert: fs.readFileSync('certificates/cert.pem', 'utf8'),
+	// 	passphrase: '1234'
+	// });
 
-	var note = new apn.Notification({
-		alert:  "Breaking News: I just sent my first Push Notification",
-		sound:  "alarm.mp3"
-	});
+	// var note = new apn.Notification({
+	// 	alert:  "Breaking News: I just sent my first Push Notification",
+	// 	sound:  "alarm.mp3"
+	// });
 
-	note.topic = "com.ionicframework.oneclick823051";
+	// note.topic = "com.ionicframework.oneclick823051";
 
-	service.send(note, tokens).then( result => {
-        console.log("sent:", result.sent.length);
-        console.log("failed:", result.failed.length);
-        console.log(result.failed);
-	});
+	// service.send(note, tokens).then( result => {
+    //     console.log("sent:", result.sent.length);
+    //     console.log("failed:", result.failed.length);
+    //     console.log(result.failed);
+	// });
 	
-	service.shutdown();
+	// service.shutdown();""
 }
 
 Employees.remoteMethod(

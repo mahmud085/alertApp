@@ -18,6 +18,10 @@
     "type": {
       "type": "string",
       "required": true
+    },
+    "deviceId": {
+      "type": "string",
+      "required": false
     }
   },
   "validations": [],
@@ -58,6 +62,13 @@
       "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "save_deviceToken"
     }
   ],
   "methods": {}

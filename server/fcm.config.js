@@ -1,5 +1,5 @@
 var FCM = require('fcm-push');
-var serverKey = 'AAAATZFYR7c:APA91bEAhNvg-gCk7cwpC9hilaWgGX33MHpbC8hpu1HM_v_5gc11jFFRSYsneOAGk2hPYQRdg0rGi733myVgPopqVS7O-2R_-6taF_gVWSrS2QBlB-KOiO6hw7VJ04aeXVQdzKVNr1ij'
+var serverKey = 'AAAAt-I3664:APA91bHzVvL70h9zBZe56PzDz_6Q9t3CIBa_rGOJVOnHNK3udAIODQJbwna-emjT-S8nG27ejS7VkDviNExHTM03dkmbH5eL-IQpPelY-Kbs6pIHDP96udeDm2tZGO79nNbFux102SGF';
 var fcm = new FCM(serverKey);
  
 var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera) 
@@ -22,8 +22,10 @@ module.exports = function(data) {
     fcm.send(message, function(err, response){
         if (err) {
             console.log("Something has gone wrong!",err);
+            return err;
         } else {
             console.log("Successfully sent with response: ", response);
+            return response;
         }
     });
 }
