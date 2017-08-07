@@ -18,10 +18,6 @@
     "type": {
       "type": "string",
       "required": true
-    },
-    "deviceId": {
-      "type": "string",
-      "required": false
     }
   },
   "validations": [],

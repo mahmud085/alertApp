@@ -56,5 +56,9 @@
   "common_email_recipients": {
     "dataSource": "db",
     "public": true
+  },
+  "DeviceInfo": {
+    "dataSource": "db",
+    "public": true
   }
 }
