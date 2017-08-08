@@ -6,8 +6,8 @@ var message = { //this may vary according to the message type (single recipient,
     to: '', 
         
     notification: {
-        title: 'Title of your push notification', 
-        body: 'Body of your push notification' 
+        title: 'One-Click', 
+        body: 'ALERT ALERT ALERT!!' 
     },
         
     // data: {  //you can send only notification or only data(or include both) 
@@ -21,10 +21,10 @@ module.exports = function(data) {
     message.to = data;    
     fcm.send(message, function(err, response){
         if (err) {
-            console.log("Something has gone wrong!",err);
+            console.log("\nfcm::Something has gone wrong!",err);
             return err;
         } else {
-            console.log("Successfully sent with response: ", response);
+            console.log("\nfcm::Successfully sent with response: ", response);
             return response;
         }
     });
