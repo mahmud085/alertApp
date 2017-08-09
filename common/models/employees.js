@@ -122,7 +122,7 @@ Employees.send_email = function(data,cb){
 	    }
 		console.log("Successfully sent email to "+email);
 		send_notification(cb);
-	    cb(null,"Email sent Successfully");
+	    // cb(null,"Email sent Successfully");
 	});
 };
 
